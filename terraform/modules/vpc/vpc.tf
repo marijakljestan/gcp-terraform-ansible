@@ -38,6 +38,7 @@ resource "google_compute_firewall" "allow-http" {
     ports = ["8080"]
   }
   source_ranges = ["0.0.0.0/0"]
+  target_tags = "${var.server_app_tags}"
 }
 
 resource "google_compute_firewall" "allow-ssh" {
