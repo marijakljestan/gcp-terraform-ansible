@@ -1,3 +1,7 @@
+output "out_image_builder_subnet" {
+  value = google_compute_subnetwork.image-builder-subnet.self_link
+}
+
 output "out_mongodb_subnet" {
   value = google_compute_subnetwork.mongodb-subnet.self_link
 }

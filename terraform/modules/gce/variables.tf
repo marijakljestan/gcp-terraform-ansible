@@ -3,6 +3,10 @@ variable "zone" {
   type = string
 }
 
+variable "vm_boot_image" {
+  type = map
+}
+
 variable "instance_name" {}
 
 variable "instance_tags" {}

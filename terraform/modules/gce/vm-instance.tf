@@ -2,8 +2,8 @@ data "google_compute_default_service_account" "default" {
 }
 
 data "google_compute_image" "vm_image" {
-  family  = "cos-stable"
-  project = "cos-cloud"
+  family  = var.vm_boot_image["family"]
+  project = var.vm_boot_image["project"]
 }
 
 resource "google_compute_instance" "vm-cos"  {
