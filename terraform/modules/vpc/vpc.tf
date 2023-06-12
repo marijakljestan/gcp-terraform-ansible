@@ -42,6 +42,17 @@ resource "google_compute_firewall" "allow-http" {
   target_tags = "${var.server_app_tags}"
 }
 
+resource "google_compute_firewall" "allow-http-me" {
+  name = "${local.name_prefix}-fw-allow-http-mongo-express"
+  network = "${google_compute_network.vpc.name}"
+  allow {
+    protocol = "tcp"
+    ports = ["8083"]
+  }
+  source_ranges = ["0.0.0.0/0"]
+  target_tags = "${var.db_gui_tags}"
+}
+
 resource "google_compute_firewall" "allow-ssh" {
   name = "${local.name_prefix}-fw-allow-ssh"
   network = "${google_compute_network.vpc.name}"

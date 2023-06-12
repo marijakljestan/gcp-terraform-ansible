@@ -1,3 +1,11 @@
+terraform {
+  backend "gcs" {
+    bucket      = "marijakljestan-terraform-backend-bucket"
+    prefix      = "terraform-ansible-project"
+    credentials = "./credentials/terraform-ansible-389111-credentials.json"
+  }
+}
+
 provider "google" {
   project     = var.gcp_project_id
   credentials = file("./credentials/terraform-ansible-389111-credentials.json")
@@ -40,13 +48,22 @@ module "gce-mongodb-vm-instance" {
   vm_boot_image       = var.cos_boot_image
 }
 
+module "gce-mongo-express-vm-instance" {
+  source              = "./modules/gce"
+  instance_name       = "mongo-express-instance"
+  machine_type        = "e2-medium"
+  instance_tags       = ["db-gui"]
+  instance_subnetwork = module.eu_central2_subnets.out_mongo_express_subnet
+  vm_boot_image       = var.cos_boot_image
+}
+
 module "gce-server-app-vm-instance" {
   source              = "./modules/gce"
   instance_name       = "server-app-instance"
   machine_type        = "e2-medium"
   instance_tags       = ["server-app"]
   instance_subnetwork = module.eu_central2_subnets.out_server_app_subnet
-  vm_boot_image       = var.cos_boot_image
+  vm_boot_image       = var.debian_boot_image
 }
 
 module "gce-image-builder-vm-instance" {

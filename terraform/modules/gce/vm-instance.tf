@@ -27,7 +27,6 @@ resource "google_compute_instance" "vm-cos"  {
   }
 
    service_account {
-    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     email  = data.google_compute_default_service_account.default.email
     scopes = ["cloud-platform"]
   }

@@ -39,10 +39,6 @@ variable "eu_central2_mongo_express_subnet" {}
 
 variable "eu_central2_server_app_subnet" {}
 
-variable "mongodb_env_variables" {}
-
-variable "server_env_variables" {}
-
 variable "cos_boot_image" {}
 
 variable "debian_boot_image" {}

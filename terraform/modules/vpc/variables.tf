@@ -9,3 +9,7 @@ variable "env" {
 variable "server_app_tags" {
   default = ["server-app"]
 }
+
+variable "db_gui_tags" {
+  default = ["db-gui"]
+}
