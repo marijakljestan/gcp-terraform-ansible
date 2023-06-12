@@ -15,6 +15,8 @@ variable "region" {
 
 variable "vpc_self_link" {}
 
+variable "image_builder_subnet" {}
+
 variable "mongodb_subnet" {}
 
 variable "mongo_express_subnet" {}

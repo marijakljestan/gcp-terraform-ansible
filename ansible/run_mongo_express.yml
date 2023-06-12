@@ -1,0 +1,19 @@
+---
+
+- hosts: db_gui
+  become: true
+  tasks:
+
+    - name: "pull image from docker hub"
+      community.general.docker_image:
+        name: mongo-express
+        source: pull
+
+    - name: "run docker container"
+      docker_container:
+        name: mongo-express
+        image: mongo:latest
+        restart_policy: always
+        state: started
+        ports:
+          - 8083:8081    

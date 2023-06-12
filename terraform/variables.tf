@@ -22,6 +22,8 @@ variable "zone" {
   type    = string
 }
 
+variable "docker_images_repository_name" {}
+
 variable "tf_backend_bucket_name" {}
 
 variable "cs_bucket_storage_class" {
@@ -29,12 +31,14 @@ variable "cs_bucket_storage_class" {
   type    = string
 }
 
+variable "eu_central2_image_builder_subnet" {}
+
 variable "eu_central2_mongodb_subnet" {}
 
 variable "eu_central2_mongo_express_subnet" {}
 
 variable "eu_central2_server_app_subnet" {}
 
-variable "mongodb_env_variables" {}
+variable "cos_boot_image" {}
 
-variable "server_env_variables" {}
+variable "debian_boot_image" {}

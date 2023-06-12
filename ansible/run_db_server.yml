@@ -1,0 +1,19 @@
+---
+
+- hosts: db_server
+  become: true
+  tasks:
+
+    - name: "pull image from docker hub"
+      community.general.docker_image:
+        name: mongo
+        source: pull
+
+    - name: "run docker container"
+      docker_container:
+        name: mongodb
+        image: mongo:latest
+        restart_policy: always
+        state: started
+        ports:
+          - 27017:27017    

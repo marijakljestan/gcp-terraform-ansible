@@ -1,0 +1,11 @@
+[http_server]
+34.116.200.149 ansible_ssh_private_key_file=~/.ssh/google_compute_engine
+
+[db_server]
+34.116.181.213 ansible_ssh_private_key_file=~/.ssh/google_compute_engine
+
+[db-gui]
+34.118.90.133 ansible_ssh_private_key_file=~/.ssh/google_compute_engine
+
+[image_builder_app]
+34.118.126.87 ansible_ssh_private_key_file=~/.ssh/google_compute_engine
