@@ -13,3 +13,7 @@ variable "server_app_tags" {
 variable "db_gui_tags" {
   default = ["db-gui"]
 }
+
+variable "fw_internal_source_ranges" {
+  type = list(string)
+}
