@@ -1,0 +1,20 @@
+- hosts: db_server
+  become: true
+  roles:
+    - db_server
+
+- hosts: db_gui
+  become: true
+  roles:
+    - db_gui
+
+- hosts: image_builder
+  become: true
+  roles:
+    - image_builder
+
+- hosts: http_server
+  become: true
+  roles:
+    - http_server    
+
