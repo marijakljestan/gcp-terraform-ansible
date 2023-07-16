@@ -1,0 +1,2 @@
+- name: "gcloud docker authentication"
+  ansible.builtin.shell: yes | gcloud auth configure-docker europe-central2-docker.pkg.dev

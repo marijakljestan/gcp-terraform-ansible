@@ -1,5 +1,5 @@
 variable "zone" {
-  default = "europe-central2-a"
+  default = "europe-central2-c"
   type = string
 }
 

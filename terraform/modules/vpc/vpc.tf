@@ -22,13 +22,7 @@ resource "google_compute_firewall"  "allow-internal" {
     protocol = "udp"
     ports = ["0-63535"]
   }
-  source_ranges = [
-    "192.168.0.0/24",
-    "192.168.1.0/24",
-    "192.168.2.0/24",
-    "192.168.3.0/24",
-    "192.168.4.0/24"
-  ]
+  source_ranges = "${var.fw_internal_source_ranges}"
 }
 
 resource "google_compute_firewall" "allow-http" {
@@ -40,17 +34,6 @@ resource "google_compute_firewall" "allow-http" {
   }
   source_ranges = ["0.0.0.0/0"]
   target_tags = "${var.server_app_tags}"
-}
-
-resource "google_compute_firewall" "allow-http-me" {
-  name = "${local.name_prefix}-fw-allow-http-mongo-express"
-  network = "${google_compute_network.vpc.name}"
-  allow {
-    protocol = "tcp"
-    ports = ["8083"]
-  }
-  source_ranges = ["0.0.0.0/0"]
-  target_tags = "${var.db_gui_tags}"
 }
 
 resource "google_compute_firewall" "allow-ssh" {

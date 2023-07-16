@@ -1,0 +1,31 @@
+- name: "install Docker"
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: install_docker 
+
+- name: "create build directory"
+  file:
+    path: /home/mkljestan/ansible
+    state: directory
+    owner: mkljestan
+    group: mkljestan
+    mode: '0755'
+
+- name: "copy files directory"
+  copy:
+    src: ../files/
+    dest: /home/mkljestan/ansible
+
+- name: "gcloud Docker authentication"
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: gcloud_docker_auth
+      
+- name: "build Docker image"
+  docker_image:
+    name: europe-central2-docker.pkg.dev/terraform-ansible-389111/docker-images/server-app
+    tag: 1.0.0
+    build:
+      path: /home/mkljestan/ansible
+    source: build
+    push: yes

@@ -14,9 +14,10 @@ provider "google" {
 }
 
 module "vpc" {
-  source       = "./modules/vpc"
-  project_name = var.project_name
-  env          = var.env
+  source                    = "./modules/vpc"
+  project_name              = var.project_name
+  env                       = var.env
+  fw_internal_source_ranges = var.vpc_subnet_ranges
 }
 
 module "eu_central2_subnets" {

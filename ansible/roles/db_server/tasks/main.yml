@@ -1,0 +1,8 @@
+- name: "run docker container"
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: run_docker_container.yml
+  vars:
+    image_name: mongo
+    exposed_port: 27017
+    published_port: 27017:27017  

@@ -18,7 +18,7 @@ variable "region" {
 }
 
 variable "zone" {
-  default = "europe-central2-a"
+  default = "europe-central2-c"
   type    = string
 }
 
@@ -38,6 +38,10 @@ variable "eu_central2_mongodb_subnet" {}
 variable "eu_central2_mongo_express_subnet" {}
 
 variable "eu_central2_server_app_subnet" {}
+
+variable "vpc_subnet_ranges" {
+  type = list(string)
+}
 
 variable "cos_boot_image" {}
 

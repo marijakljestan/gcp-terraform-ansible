@@ -1,0 +1,23 @@
+- name: "install Docker"
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: install_docker 
+
+- name: "gcloud docker authentication"
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: gcloud_docker_auth
+
+- name: "pull docker image from GCP Artifact registry"
+  docker_container: 
+    image: europe-central2-docker.pkg.dev/terraform-ansible-389111/docker-images/server-app:1.0.0
+    pull: yes
+    name: server-app
+    env:
+      DB_HOST: "192.168.1.2"
+      DB_PORT: "27017"
+      SERVER_PORT: "8080"
+    ports:
+      - "8080:8080"
+    state: started
+    restart_policy: always

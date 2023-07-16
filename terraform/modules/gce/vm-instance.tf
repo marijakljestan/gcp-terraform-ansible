@@ -26,7 +26,7 @@ resource "google_compute_instance" "vm-cos"  {
     }
   }
 
-   service_account {
+  service_account {
     email  = data.google_compute_default_service_account.default.email
     scopes = ["cloud-platform"]
   }
