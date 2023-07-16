@@ -1,10 +1,14 @@
-- name: Install Docker
-  ansible.builtin.shell: cd ~ && curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
+- name: "install Docker"
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: install_docker 
 
 - name: "gcloud docker authentication"
-  ansible.builtin.shell: yes | gcloud auth configure-docker europe-central2-docker.pkg.dev
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: gcloud_docker_auth
 
-- name: Pull docker image from Artifact registry
+- name: "pull docker image from GCP Artifact registry"
   docker_container: 
     image: europe-central2-docker.pkg.dev/terraform-ansible-389111/docker-images/server-app:1.0.0
     pull: yes

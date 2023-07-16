@@ -1,13 +1,8 @@
-- name: "pull image from docker hub"
-  community.general.docker_image:
-    name: mongo
-    source: pull
-
 - name: "run docker container"
-  docker_container:
-    name: mongodb
-    image: mongo:latest
-    restart_policy: always
-    state: started
-    ports:
-      - 27017:27017   
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: run_docker_container.yml
+  vars:
+    image_name: mongo
+    exposed_port: 27017
+    published_port: 27017:27017  

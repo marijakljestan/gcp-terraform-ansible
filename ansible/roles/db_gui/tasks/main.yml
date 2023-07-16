@@ -1,13 +1,8 @@
-- name: "pull image from docker hub"
-  community.general.docker_image:
-    name: mongo-express
-    source: pull
-
 - name: "run docker container"
-  docker_container:
-    name: mongo-express
-    image: mongo-express:latest
-    restart_policy: always
-    state: started
-    ports:
-      - 8083:8081    
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: run_docker_container.yml
+  vars:
+    image_name: mongo-express
+    exposed_port: 8081
+    published_port: 8083:8081  

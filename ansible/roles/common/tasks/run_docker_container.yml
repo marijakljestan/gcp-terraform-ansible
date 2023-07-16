@@ -1,0 +1,15 @@
+- name: "pull image from Docker hub"
+  community.general.docker_image:
+    name: "{{ image_name }}"
+    source: pull
+    
+- name: "run docker container"
+  docker_container:
+    name: "{{ image_name }}"
+    image: "{{ image_name }}"
+    restart_policy: always
+    state: started
+    exposed_ports:
+      - "{{ exposed_port }}"  
+    ports:
+      - "{{ published_port }}"  
